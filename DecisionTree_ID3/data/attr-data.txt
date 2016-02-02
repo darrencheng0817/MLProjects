@@ -1,0 +1,8 @@
+Size:{Large, Medium, Small}
+Occupied:{High, Moderate, Low}
+Price:{Expensive, Normal, Cheap}
+Music:{Loud, Quiet}
+Location:{Talpiot, City-Center, Mahane-Yehuda, Ein-Karem, German-Colony}
+VIP:{Yes, No}
+Favorite Beer:{Yes, No}
+Enjoy:{Yes, No}
