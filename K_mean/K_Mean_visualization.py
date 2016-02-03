@@ -5,6 +5,7 @@ Created on 2016年2月2日
 '''
 from random import random
 from math import sqrt
+import matplotlib.pyplot as plt
 
 class K_Mean(object):
     '''
@@ -110,6 +111,50 @@ class K_Mean(object):
                 return res
             seeds = res
         
+    def draw_points(self):
+        if not self.km_data:
+            print("Please load data first!")
+            return
+        if len(self.km_data[0])!=2:
+            print("Only support Two-Dimension!")  
+            return
+        x=[]
+        y=[]
+        for element in self.km_data:
+            x.append(element[0])
+            y.append(element[1])
+        area = 10
+        plt.scatter(x, y, s=area, c="blue", alpha=0.5)
+        plt.show()
+    
+    def draw_results(self):
+        colors=["blue","yellow","green","black","cyan","gray","pink"]
+        if self.k>len(colors):
+            print("Don't have that much colors to show the results!")
+            return
+        if not self.res_data:
+            print("No results to show!")
+            return
+        if len(self.km_data[0])!=2:
+            print("Only support Two-Dimension!")  
+            return
+        for cluster_index in sorted(self.res_data.keys()):
+            x=[]
+            y=[]
+            for element in self.res_data[cluster_index]:
+                x.append(element[0])
+                y.append(element[1])
+            area = 20
+            plt.scatter(x, y, s=area, c=colors[cluster_index], alpha=0.5)
+        x=[]
+        y=[]
+        for element in self.res:
+            x.append(element[0])
+            y.append(element[1])
+        area = 40
+        plt.scatter(x, y, s=area, c="red", alpha=0.5)
+        plt.show()
+        
                
     def run(self, k):
         self.k = k
@@ -120,3 +165,6 @@ class K_Mean(object):
 if __name__ == '__main__':
     k_mean = K_Mean()
     print(k_mean.run(3))
+#     k_mean.draw_points()
+    k_mean.draw_results()
+    
