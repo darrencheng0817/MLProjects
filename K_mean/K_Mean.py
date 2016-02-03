@@ -20,6 +20,7 @@ class K_Mean(object):
         self.km_data = []
         self.res_data={}
         self.res=[]
+        self.dis_alg=""
         
     def parse_km_content(self, content):
         print("Parsing km data...")
@@ -47,6 +48,12 @@ class K_Mean(object):
             return False
         print("Finished loading km data...")
         return self.parse_km_content(content)
+     
+    def get_l1_distance(self,A,B):
+        res=0
+        for index in range(len(A)):
+            res+=abs(A[index]-B[index])
+        return res
     
     def get_l2_distance(self,A,B):
         res=0
@@ -61,7 +68,10 @@ class K_Mean(object):
         return True
     
     def get_distance(self,A,B):
-        return self.get_l2_distance(A, B)
+        if self.dis_alg=="l1":
+            return self.get_l1_distance(A, B)
+        elif self.dis_alg=="l2":
+            return self.get_l2_distance(A, B)
     
     def km_iteration(self, seeds):
         km_set={}
@@ -111,7 +121,8 @@ class K_Mean(object):
             seeds = res
         
                
-    def run(self, k):
+    def run(self, k,dis="l2"):
+        self.dis_alg=dis
         self.k = k
         if not self.load_km_data():
             return
@@ -119,4 +130,4 @@ class K_Mean(object):
         
 if __name__ == '__main__':
     k_mean = K_Mean()
-    print(k_mean.run(3))
+    print(k_mean.run(3,"l1"))
