@@ -3,25 +3,94 @@ Created on 2016年2月1日
 
 @author: Darren
 '''
+from math import log
 class TreeNode(object):
-    def __init__(self):
-        self.value=""
+    def __init__(self,name):
+        self.name=name
         self.children={}
         self.isEnd=False
-        
+        self.decision={}
         
 class DecisionTree_ID3(object):
     def __init__(self):
         self.root=None
         self.attr_file_name="data/attr-data.txt"
         self.dt_file_name="data/dt-data.txt"
+        self.output_file_name="ouput.txt"
         self.attr_values={}
         self.index_attr={}
+        self.attr_index={}
         self.dt_data=[]
     
     def buildDT(self):
-        return
-         
+        print("Building decision tree...")
+        res=self.buildDTUtil(self.dt_data, set(self.attr_values.keys()))
+        print("Finished building decision tree...")
+        return res
+    
+    def get_max_entropy_gain(self,dt_data,attrs):
+        if not dt_data:
+            return
+        statistic={}
+        for line in dt_data:
+            for index,value in enumerate(line[:-1]):
+                attr=self.index_attr[index]
+                if attr not in attrs:
+                    continue
+                if attr not in statistic:
+                    statistic[attr]={}
+                if value not in self.attr_values[attr]:
+                    raise Exception("Unknown content!")
+                else:
+                    if value not in statistic[attr]:
+                        statistic[attr][value]={}
+                        statistic[attr][value]["total"]=0
+                    label=line[-1]
+                    if label not in statistic[attr][value]:
+                        statistic[attr][value][label]=0
+                    statistic[attr][value][label]+=1
+                    statistic[attr][value]["total"]+=1
+        total_data_count=len(dt_data)
+        res_attr=""
+        min_entropy=1
+        for attr in statistic.keys():
+            sum_entropy=0
+            for value in self.attr_values[attr]:
+                local_sum=0
+                if value not in statistic[attr]:
+                    continue
+                for label in statistic[attr][value].keys():
+                    if label=="total":
+                        continue
+                    local_sum+=(-statistic[attr][value][label]/statistic[attr][value]["total"]*log(statistic[attr][value][label]/statistic[attr][value]["total"])/log(2))
+                sum_entropy+=(local_sum)*statistic[attr][value]["total"]/total_data_count
+            if sum_entropy<min_entropy:
+                min_entropy=sum_entropy
+                res_attr=attr
+        if min_entropy==1:
+            min_entropy=0.0
+        return (res_attr,min_entropy) 
+    
+    def buildDTUtil(self,dt_data,attrs):
+        candidate,entropy=self.get_max_entropy_gain(dt_data,attrs)
+        res_node=TreeNode(candidate)
+        if entropy==0:
+            res_node.isEnd=True
+            for data in dt_data:
+                res_node.decision[data[self.attr_index[candidate]]]=data[-1]
+        else:
+            data_set={}
+            attr_index=self.attr_index[candidate]
+            for data in dt_data:
+                if data[attr_index] not in data_set:
+                    data_set[data[attr_index]]=[]
+                data_set[data[attr_index]].append(data)
+            new_attrs=set(attrs)
+            new_attrs.remove(candidate)
+            for key in data_set.keys():
+                res_node.children[key]=self.buildDTUtil(data_set[key], new_attrs)
+        return res_node
+    
     def pre_process(self):
         print("PreProcessing...")
         if not self.load_attr_data() or not self.load_dt_data():
@@ -45,7 +114,7 @@ class DecisionTree_ID3(object):
                 print("Duplicate attr!")
                 return False
             self.attr_values[attr_name]=attr_values
-        print("Finish parsing attributes data...")
+        print("Finished parsing attributes data...")
         return True 
     
     def load_attr_data(self):
@@ -59,7 +128,7 @@ class DecisionTree_ID3(object):
         except:
             print("Error")
             return False
-        print("Finish loading attributes data...")
+        print("Finished loading attributes data...")
         return self.parse_attr_content(content)
         
     def parse_dt_content(self,content):
@@ -74,13 +143,14 @@ class DecisionTree_ID3(object):
                 line=line.strip().split(", ")
                 for attr_index,attr in enumerate(line):
                     self.index_attr[attr_index]=attr
+                    self.attr_index[attr]=attr_index
             else:
                 if not line:
                     continue
                 line=line.strip().split(":")[1][1:-1]
                 line=line.strip().split(", ")     
                 self.dt_data.append(line) 
-        print("Finish parsing training data...")
+        print("Finished parsing training data...")
         return True
         
     def load_dt_data(self):
@@ -94,9 +164,41 @@ class DecisionTree_ID3(object):
         except:
             print("Error load dt data")
             return False
-        print("Finish loading training data...")
+        print("Finished loading training data...")
         return self.parse_dt_content(content)
+    
+    def query(self):
+        pass
+    
+    def out_put_tree_util(self,root,res,level):
+        if root.isEnd:
+            for key in root.decision.keys():
+                res.append("  "*level+'if '+root.name+'=="'+key+'" then '+root.decision[key])
+            return
+        for key in root.children.keys():
+            res.append("  "*level+'if '+root.name+'=="'+key+'" then: ')
+            self.out_put_tree_util(root.children[key], res,level+1)
+     
+    def out_put_tree_to_file(self):
+        res=[]
+        self.out_put_tree_util(self.root,res,0)
+        try:
+            file=open(self.output_file_name, "w")
+            for line in res:
+                file.write(line+"\n")
+        except FileNotFoundError:
+            print(self.attr_file_name+" File not Found!")
+        except:
+            print("Error")
+                
+    def out_put_tree(self):
+        res=[]
+        self.out_put_tree_util(self.root,res,0)
+        for line in res:
+            print(line)
 
 if __name__ == '__main__':
     decisionTree_ID3=DecisionTree_ID3()
     decisionTree_ID3.pre_process()
+    decisionTree_ID3.out_put_tree_to_file()
+    decisionTree_ID3.out_put_tree()
