@@ -1,6 +1,6 @@
 '''
 Created on 2016年2月2日
-
+Used matplotlib library, see http://matplotlib.org/
 @author: Darren
 '''
 from random import random
