@@ -1,0 +1,1 @@
+Size = Large; Occupied = Moderate; Price = Cheap; Music = Loud; Location =City-Center; VIP = No; Favorite Beer = No

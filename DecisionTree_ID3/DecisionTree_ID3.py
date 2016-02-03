@@ -16,12 +16,14 @@ class DecisionTree_ID3(object):
         self.root=None
         self.attr_file_name="data/attr-data.txt"
         self.dt_file_name="data/dt-data.txt"
+        self.query_file_name="data/query.txt"
         self.output_file_name="ouput.txt"
         self.attr_values={}
         self.index_attr={}
         self.attr_index={}
         self.dt_data=[]
-    
+        self.query_data={}
+        
     def buildDT(self):
         print("Building decision tree...")
         res=self.buildDTUtil(self.dt_data, set(self.attr_values.keys()))
@@ -168,8 +170,53 @@ class DecisionTree_ID3(object):
         return self.parse_dt_content(content)
     
     def query(self):
-        pass
+        if not self.load_query():
+            return
+        print("Making query...")
+        res=self.query_util(self.root)
+        if not res:
+            print("Can't make prediction!")
+        else:
+            print("Prediction: "+res)
+        
+    def query_util(self,root):
+        if root.isEnd:
+            if self.query_data[root.name] not in root.decision:
+                return ""
+            return root.decision[self.query_data[root.name]]
+        if self.query_data[root.name] not in root.children:
+            return ""
+        return self.query_util(root.children[self.query_data[root.name]])
     
+    def parse_query_content(self,content):
+        print("Parsing query data...")
+        if not content:
+            print("Empty dt File!")
+            return False
+        for line_index,line in enumerate(content):
+            line=line.replace("\n","")
+            line=line.strip().split(";")
+            for item in line:
+                item=item.strip().split("=")
+                self.query_data[item[0].strip()]=item[1].strip()
+        print("Finished parsing query data...")
+        return True
+        
+    def load_query(self):
+        print("Loading query data...")
+        try:
+            file=open(self.query_file_name, "r")
+            content=file.readlines()
+        except FileNotFoundError:
+            print(self.query_file_name+" File not Found!")
+            return False
+        except:
+            print("Error load dt data")
+            return False
+        print("Finished loading query data...")
+        return self.parse_query_content(content)
+    
+        
     def out_put_tree_util(self,root,res,level):
         if root.isEnd:
             for key in root.decision.keys():
@@ -192,6 +239,7 @@ class DecisionTree_ID3(object):
             print("Error")
                 
     def out_put_tree(self):
+        print("Outputing Decision tree...")
         res=[]
         self.out_put_tree_util(self.root,res,0)
         for line in res:
@@ -202,3 +250,4 @@ if __name__ == '__main__':
     decisionTree_ID3.pre_process()
     decisionTree_ID3.out_put_tree_to_file()
     decisionTree_ID3.out_put_tree()
+    decisionTree_ID3.query()
