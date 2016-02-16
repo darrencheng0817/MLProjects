@@ -1,0 +1,29 @@
+if Occupied=="High" then: 
+  if Location=="Talpiot" then No
+  if Location=="City-Center" then Yes
+  if Location=="German-Colony" then No
+  if Location=="Mahane-Yehuda" then Yes
+if Occupied=="Moderate" then: 
+  if Location=="Talpiot" then: 
+    if Price=="Cheap" then No
+    if Price=="Normal" then Yes
+  if Location=="City-Center" then: 
+    if Price=="Normal" then Yes
+  if Location=="Ein-Karem" then: 
+    if Price=="Normal" then Yes
+  if Location=="German-Colony" then: 
+    if VIP=="Yes" then Yes
+    if VIP=="No" then No
+  if Location=="Mahane-Yehuda" then: 
+    if Price=="Expensive" then Yes
+    if Price=="Cheap" then Yes
+if Occupied=="Low" then: 
+  if Price=="Expensive" then: 
+    if VIP=="No" then No
+  if Price=="Cheap" then: 
+    if VIP=="Yes" then No
+    if VIP=="No" then No
+  if Price=="Normal" then: 
+    if Size=="Medium" then Yes
+    if Size=="Large" then No
+    if Size=="Small" then No

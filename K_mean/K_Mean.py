@@ -44,7 +44,7 @@ class K_Mean(object):
             print(self.data_file_name + " File not Found!")
             return False
         except:
-            print("Error")
+            print("Error reading km data")
             return False
         print("Finished loading km data...")
         return self.parse_km_content(content)
