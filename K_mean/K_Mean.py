@@ -73,6 +73,7 @@ class K_Mean(object):
             return self.__get_l1_distance(A, B)
         elif self.dis_alg=="l2":
             return self.__get_l2_distance(A, B)
+        #new distance measurement function could be added here
         else:
             raise Exception("Invalid distance measurement algorithm!")
         

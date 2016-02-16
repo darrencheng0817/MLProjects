@@ -236,7 +236,7 @@ class DecisionTree_ID3(object):
     
     def get_tree_count(self):
         '''
-        bug here
+        bug remains here
         '''
         return self.get_tree_count_util(self.root)
     

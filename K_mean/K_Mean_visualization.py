@@ -7,7 +7,6 @@ from random import random
 from math import sqrt
 import matplotlib.pyplot as plt
 
-
 class K_Mean(object):
     '''
     Implementation of k-mean algorithm
@@ -75,6 +74,7 @@ class K_Mean(object):
             return self.__get_l1_distance(A, B)
         elif self.dis_alg=="l2":
             return self.__get_l2_distance(A, B)
+        #new distance measurement function could be added here
         else:
             raise Exception("Invalid distance measurement algorithm!")
         
@@ -206,6 +206,6 @@ class K_Mean(object):
 if __name__ == '__main__':
     k_mean = K_Mean()
     print(k_mean.run(3,"l1"))
-#     k_mean.draw_points()
+#   k_mean.draw_points()
     k_mean.draw_results()
     
