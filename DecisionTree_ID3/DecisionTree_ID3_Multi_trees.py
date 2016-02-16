@@ -249,19 +249,18 @@ class DecisionTree_ID3(object):
                 res*=self.get_tree_count_util(node.children[key])
         return res
                 
-    def out_put_tree_util(self,root,res,level):
+    def out_put_tree_util(self,root,res,path):
         for node in root:
             if node.isEnd:
                 for key in node.decision.keys():
-                    res.append("  "*level+'if '+node.name+'=="'+key+'" then '+node.decision[key])
+                    res.append('if '+path+node.name+'=="'+key+'" then '+node.decision[key])
                 continue
             for key in node.children.keys():
-                res.append("  "*level+'if '+node.name+'=="'+key+'" then: ')
-                self.out_put_tree_util(node.children[key], res,level+1)
+                self.out_put_tree_util(node.children[key], res,path+node.name+'=="'+key+'" and ')
      
     def out_put_tree_to_file(self):
         res=[]
-        self.out_put_tree_util(self.root,res,0)
+        self.out_put_tree_util(self.root,res,"")
         try:
             file=open(self.output_file_name, "w")
             for line in res:
@@ -274,7 +273,7 @@ class DecisionTree_ID3(object):
     def out_put_tree(self):
         print("Outputing Decision tree...")
         res=[]
-        self.out_put_tree_util(self.root,res,0)
+        self.out_put_tree_util(self.root,res,"")
         for line in res:
             print(line)
 

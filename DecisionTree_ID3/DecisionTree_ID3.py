@@ -17,7 +17,7 @@ class DecisionTree_ID3(object):
         self.attr_file_name="data/attr-data.txt"
         self.dt_file_name="data/dt-data.txt"
         self.query_file_name="data/query.txt"
-        self.output_file_name="ouput.txt"
+        self.output_file_name="output.txt"
         self.attr_values={}
         self.index_attr={}
         self.attr_index={}
@@ -217,18 +217,17 @@ class DecisionTree_ID3(object):
         return self.parse_query_content(content)
     
         
-    def out_put_tree_util(self,root,res,level):
+    def out_put_tree_util(self,root,res,path):
         if root.isEnd:
             for key in root.decision.keys():
-                res.append("  "*level+'if '+root.name+'=="'+key+'" then '+root.decision[key])
+                res.append('if '+path+root.name+'=="'+key+'" then '+root.decision[key])
             return
         for key in root.children.keys():
-            res.append("  "*level+'if '+root.name+'=="'+key+'" then: ')
-            self.out_put_tree_util(root.children[key], res,level+1)
-     
+            self.out_put_tree_util(root.children[key], res,path+root.name+'=="'+key+'" and ')
+                
     def out_put_tree_to_file(self):
         res=[]
-        self.out_put_tree_util(self.root,res,0)
+        self.out_put_tree_util(self.root,res,"")
         try:
             file=open(self.output_file_name, "w")
             for line in res:
@@ -241,7 +240,7 @@ class DecisionTree_ID3(object):
     def out_put_tree(self):
         print("Outputing Decision tree...")
         res=[]
-        self.out_put_tree_util(self.root,res,0)
+        self.out_put_tree_util(self.root,res,"")
         for line in res:
             print(line)
 
