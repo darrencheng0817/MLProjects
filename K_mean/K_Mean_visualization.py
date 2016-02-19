@@ -17,12 +17,12 @@ class K_Mean(object):
         Constructor
         '''
         self.data_file_name = ""
-        self.accuracy = 0.0000001
+        self.accuracy = 0.0000001   #used when compare two centroids
         self.k = 0
-        self.km_data = []
-        self.res_data={}
-        self.res=[]
-        self.dis_alg=""
+        self.km_data = []   #data list
+        self.res_data={}    #key:cluster index value:points assigned to the cluster
+        self.res=[]    #centroids
+        self.dis_alg=""     #distance algorithm
         
     def __parse_km_content(self, content):
         print("Parsing km data...")

@@ -1,15 +1,15 @@
 '''
 Created on 2016年2月1日
-
+Implementation of decision tree algorithm.
 @author: Darren
 '''
 from math import log
 class TreeNode(object):
     def __init__(self,name):
-        self.name=name
-        self.children={}
-        self.isEnd=False
-        self.decision={}
+        self.name=name  #Attribute name
+        self.children={}    #key:value of current attribute, value:child node
+        self.isEnd=False    #Flag to indicate the leaf
+        self.decision={}    #key:value of current attribute, value:label 
         
 class DecisionTree_ID3(object):
     def __init__(self):
@@ -18,11 +18,11 @@ class DecisionTree_ID3(object):
         self.dt_file_name="data/dt-data.txt"
         self.query_file_name="data/query.txt"
         self.output_file_name="output.txt"
-        self.attr_values={}
-        self.index_attr={}
-        self.attr_index={}
-        self.dt_data=[]
-        self.query_data={}
+        self.attr_values={} #key:attribute value:list of the values
+        self.index_attr={}  #key:index of attribute in the training data value:attribute
+        self.attr_index={}  #key:attribute value:index of attribute in the training data
+        self.dt_data=[] #list of training data
+        self.query_data={} #key: attribute value:value of attribute
         
     def buildDT(self):
         print("Building decision tree...")

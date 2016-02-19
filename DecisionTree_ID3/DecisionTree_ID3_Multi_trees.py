@@ -1,6 +1,6 @@
 '''
 Created on 2016年2月1日
-
+Implementation of decision tree algorithm. In this implementation, is two attribute have same entropy gain, both of them will be add to the children of previous node. 
 @author: Darren
 '''
 from math import log
