@@ -3,7 +3,7 @@ Created on 2016年3月9日
 
 @author: Darren
 '''
-from Util import Matrix
+from Util import Matrix, Vector
 
 def get_average(data):
     if not data:
@@ -24,15 +24,11 @@ def get_covariance(data,x,y):
 
 def get_covariance_matrix(data):
     avg=get_average(data)
-    centralized_matrix=[[0]*len(data[0]) for _ in range(len(data))] 
+    centralized_matrix=[0]*len(data)  
     for i,item in enumerate(data):
-        for j in range(len(item)):
-            centralized_matrix[i][j]=item[j]-avg[j]
+        centralized_matrix[i]=Vector.minus(item,avg)
     res=Matrix.multiply(Matrix.transpose(centralized_matrix),centralized_matrix)
     N=len(data[0])-1
-    for i in range(len(res)):
-        for j in range(len(res[0])):
-            res[i][j]/=N
-    return res
+    return Matrix.multiply_integer(res, 1/N)
     
     
