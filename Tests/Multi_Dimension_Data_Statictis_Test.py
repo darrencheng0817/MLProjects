@@ -12,7 +12,7 @@ class Test(unittest.TestCase):
 
     def test_get_average(self):
         data=[[1,2,3],[4,5,6],[7,8,9]]
-        expected_result=[4,5,6]
+        expected_result=[[4],[5],[6]]
         actual_result=Multi_Dimension_Data_Statictis.get_average(data)
         self.assertEqual(expected_result, actual_result)
         

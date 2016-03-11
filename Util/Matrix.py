@@ -7,6 +7,8 @@ from Util import Vector
 
 def multiply(A,B):
     if not A or not B or len(A[0])!=len(B):
+        print(A)
+        print(B)
         raise Exception("Invalid input")
     res=[[0]*len(B[0]) for _ in range(len(A))]
     for i in range(len(A)):
@@ -34,26 +36,26 @@ def inverse(A):
 def minus(A,B):
     if not A or not B or len(A)!=len(B) or len(A[0])!=len(B[0]):
         raise Exception("Invalid input")
-    res=list(A)
+    res=[[0]*len(A[0]) for _ in range(len(A))]
     for i in range(len(A)):
         for j in range(len(A[0])):
-            res[i][j]-=B[i][j]
+            res[i][j]=A[i][j]-B[i][j]
     return res
 
 def plus(A,B):
     if not A or not B or len(A)!=len(B) or len(A[0])!=len(B[0]):
         raise Exception("Invalid input")
-    res=list(A)
+    res=[[0]*len(A[0]) for _ in range(len(A))]
     for i in range(len(A)):
         for j in range(len(A[0])):
-            res[i][j]+=B[i][j]
+            res[i][j]=A[i][j]+B[i][j]
     return res
 
 def multiply_integer(A,N):
-    res=list(A)
+    res=[[0]*len(A[0]) for _ in range(len(A))]
     for i in range(len(A)):
         for j in range(len(A[0])):
-            res[i][j]*=N
+            res[i][j]=A[i][j]*N
     return res
 
 def transpose(A):
@@ -68,9 +70,9 @@ def transpose(A):
 def append(A,B):
     if not A or not B or len(A)!=len(B):
         raise Exception("Invalid input")
-    res=list(A)
+    res=[0]*len(A)
     for index in range(len(A)):
-        res[index]+=B[index]
+        res[index]=A[index]+B[index]
     return res
 
 def eye(N):
@@ -82,7 +84,10 @@ def eye(N):
 def determinant(A):
     if not A or len(A)!=len(A[0]):
         raise Exception("Invalid input")
-    new_A=list(A)
+    new_A=[[0]*len(A[0]) for _ in range(len(A))]
+    for i in range(len(A)):
+        for j in range(len(A)):
+            new_A[i][j]=A[i][j]
     for i in range(len(A)):
         for j in range(i+1,len(A)):
             new_A[j]=Vector.minus(new_A[j], Vector.multiply_integer(new_A[i], new_A[j][i]/new_A[i][i]))

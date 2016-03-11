@@ -8,12 +8,12 @@ from Util import Matrix, Vector
 def get_average(data):
     if not data:
         return []
-    res=[0]*len(data[0])
+    res=[[0] for _ in range(len(data[0]))]
     for item in data:
         for index in range(len(item)):
-            res[index]+=item[index]
+            res[index][0]+=item[index]
     for index in range(len(item)):
-        res[index]/=len(data)    
+        res[index][0]/=len(data)    
     return res
 
 def get_variance(data):
@@ -24,11 +24,12 @@ def get_covariance(data,x,y):
 
 def get_covariance_matrix(data):
     avg=get_average(data)
+    avg=[n[0] for n in avg]
     centralized_matrix=[0]*len(data)  
     for i,item in enumerate(data):
         centralized_matrix[i]=Vector.minus(item,avg)
     res=Matrix.multiply(Matrix.transpose(centralized_matrix),centralized_matrix)
-    N=len(data[0])-1
+    N=len(data)-1
     return Matrix.multiply_integer(res, 1/N)
     
     
