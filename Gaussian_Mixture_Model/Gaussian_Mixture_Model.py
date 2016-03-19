@@ -20,12 +20,12 @@ class Gaussian_Mixture_Model(object):
         self.data=[]
         self.accurate=0.0000000001
         
-    def load_data(self):
+    def load_data(self,file_name):
         try:
-            with open("data/clusters.txt","r") as file:
+            with open(file_name,"r") as file:
                 data=file.readlines()
                 for line in data:
-                    line=line.strip("/n")
+                    line=line.strip("\n")
                     x,y=line.split(",")
                     self.data.append([float(x),float(y)])
         except:
@@ -65,8 +65,8 @@ class Gaussian_Mixture_Model(object):
             likehood+=log(temp)
         return likehood,new_data_sets
                     
-    def run(self,k):
-        self.load_data()
+    def run(self,k,file_name):
+        self.load_data(file_name)
         data_sets=[]
         pre_likehood=0
         l=len(self.data)//k
@@ -83,6 +83,7 @@ class Gaussian_Mixture_Model(object):
                 print(new_likehood)
                 break
             pre_likehood=new_likehood
-        
+            
+file_name="data/clusters.txt"                
 gaussian_mixture_model=Gaussian_Mixture_Model()
-gaussian_mixture_model.run(3)
+gaussian_mixture_model.run(3,file_name)
