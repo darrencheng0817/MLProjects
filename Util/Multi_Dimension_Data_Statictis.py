@@ -4,6 +4,7 @@ Created on 2016年3月9日
 @author: Darren
 '''
 from Util import Matrix, Vector
+from math import sqrt
 
 def get_average(data):
     if not data:
@@ -17,8 +18,26 @@ def get_average(data):
     return res
 
 def get_variance(data):
-    pass
+    means=get_average(data)
+    res=[[0] for _ in range(len(data[0]))]
+    for item in data:
+        for index in range(len(item)):
+            res[index][0]+=(item[index]-means[index][0])**2
+    for index in range(len(item)):
+        res[index][0]/=len(data)    
+    return res
 
+def get_deviations(data):
+    means=get_average(data)
+    res=[[0] for _ in range(len(data[0]))]
+    for item in data:
+        for index in range(len(item)):
+            res[index][0]+=(item[index]-means[index][0])**2
+    for index in range(len(item)):
+        res[index][0]/=len(data) 
+        res[index][0]=sqrt(res[index][0])   
+    return res
+        
 def get_covariance(data,x,y):
     pass
 

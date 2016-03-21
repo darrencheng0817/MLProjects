@@ -21,7 +21,13 @@ class Test(unittest.TestCase):
         expected_result=[[9,9,9],[9,9,9],[9,9,9]]
         actual_result=Multi_Dimension_Data_Statictis.get_covariance_matrix(data)
         self.assertEqual(expected_result, actual_result)
-        
+     
+    def test_get_variance(self):
+        data=[[1,2,3],[4,5,6],[7,8,9]]
+        expected_result=[[6],[6],[6]]
+        actual_result=Multi_Dimension_Data_Statictis.get_variance(data)
+        self.assertEqual(expected_result, actual_result)    
+         
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()
