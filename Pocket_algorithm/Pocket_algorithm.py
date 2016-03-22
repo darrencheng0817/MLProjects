@@ -9,16 +9,19 @@ class Perceptron_Learning(object):
     def __init__(self):
         self.data=[]
         self.weights=[]
+        self.result=(float('inf'),[])
         self.threshold = 0
         self.learning_rate = 0.1
+        self.max_iteration_count=500
         
     def run(self,file_name):
         self.load_data(file_name)
         self.weights=[0] * (len(self.data[0])-1)
-        while True:
+        for _ in range(self.max_iteration_count):
             res=self.iteration()
             if res:
-                return self.weights
+                break
+        return self.result[1]
         
         
      
@@ -36,6 +39,8 @@ class Perceptron_Learning(object):
                 error_count += 1
                 for index, value in enumerate(input_vector):
                     self.weights[index] += self.learning_rate * desired_output * value
+        if error_count<self.result[0]:
+            self.result=(error_count,self.weights)
         if error_count == 0:
             return True
         return False
@@ -48,7 +53,7 @@ class Perceptron_Learning(object):
                     line=line.strip("\n")
                     line=line.split(",")
                     line=list(map(float,line))
-                    self.data.append(line[:-1]) #ignore the last col
+                    self.data.append(line[:3]+line[4:]) #ignore the 4th col
         except:
             print("Error reading data!") 
         
