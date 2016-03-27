@@ -21,20 +21,20 @@ class Principal_Components_Analysis(object):
 #         Calculate the empirical mean
         means=Multi_Dimension_Data_Statictis.get_average(self.data)
 #         Calculate the deviations from the mean
-        deviations=Multi_Dimension_Data_Statictis.get_deviations(self.data)
+        deviations=Multi_Dimension_Data_Statictis.get_deviations(self.data) #unused
         mean_subtracted_data=Matrix.minus(self.data, Matrix.multiply([[1] for _ in range(len(self.data))], Matrix.transpose(means)))
 #         Find the covariance matrix
         covariance_matrix=Multi_Dimension_Data_Statictis.get_covariance_matrix(mean_subtracted_data)
-        print(covariance_matrix)
 #         Find the eigenvectors and eigenvalues of the covariance matrix
         x= np.mat(covariance_matrix)
         eigenvalues,eigenvectors=np.linalg.eigh(x)
         eigenvalues=eigenvalues.tolist()
-        eigenvectors=eigenvectors.tolist()
+        eigenvectors=Matrix.transpose(eigenvectors.tolist())
 #         Rearrange the eigenvectors and eigenvalues
         eigenvalue_and_eigenvector=[]
         for i in range(len(eigenvalues)):
             eigenvalue_and_eigenvector.append((eigenvalues[i],eigenvectors[i]))
+        
         eigenvalue_and_eigenvector=sorted(eigenvalue_and_eigenvector, reverse=True)
 #         Choosing k eigenvectors with the largest eigenvalues
         transform_matrix=[]
@@ -60,12 +60,6 @@ class Principal_Components_Analysis(object):
 file_name="data/dims.txt"  
 principal_Components_Analysis=Principal_Components_Analysis()
 result=principal_Components_Analysis.run(file_name,2)
-# for index,item in enumerate(result):
-#     print(index,item)
-#     
-# from sklearn.decomposition import PCA as sklearnPCA
-# 
-# sklearn_pca = sklearnPCA(n_components=2)
-# sklearn_transf = sklearn_pca.fit_transform(principal_Components_Analysis.data)
-# print(sklearn_pca.transform(principal_Components_Analysis.data))
-# print(sklearn_transf)
+for index,item in enumerate(result):
+    print(index,item)
+      

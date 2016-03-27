@@ -11,7 +11,7 @@ class FastMap(object):
     def __init__(self):
         self.data=[]
         self.results=[]
-        self.distances=None
+        self.distances=[]
         
     def run(self,file_name,k):
         self.load_data(file_name)
@@ -86,5 +86,5 @@ class FastMap(object):
 file_name="data/dims.txt"  
 fastMap=FastMap()
 result=fastMap.run(file_name,2)
-print(result)
-print(8.26+11.08+12.00+17.00+28.19+28.17+28.24+24.30)
+for item in result:
+    print(item)
