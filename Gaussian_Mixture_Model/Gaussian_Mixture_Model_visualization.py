@@ -4,9 +4,9 @@ Created on 2016年3月7日
 @author: Darren
 '''
 from Util import Matrix, Multi_Dimension_Data_Statictis, Gaussian
-import time
 import copy
 from math import log
+import matplotlib.pyplot as plt
 class Gaussian_Mixture_Model(object):
     '''
     Gaussian Mixture Model
@@ -19,6 +19,8 @@ class Gaussian_Mixture_Model(object):
         '''
         self.data=[]
         self.accurate=0.0000000001
+        self.res_data=[]
+        self.k=0
         
     def load_data(self,file_name):
         try:
@@ -70,6 +72,7 @@ class Gaussian_Mixture_Model(object):
         return likehood,new_data_sets
                     
     def run(self,k,file_name):
+        self.k=k
         self.load_data(file_name)
         data_sets=[]
         pre_likehood=0
@@ -85,15 +88,35 @@ class Gaussian_Mixture_Model(object):
             if abs(new_likehood-pre_likehood)<self.accurate:
                 print("Get result in "+str(count)+" iterations!")
                 print(new_likehood)
+                self.res_data=data_sets
                 break
             pre_likehood=new_likehood
-        return data_sets
-        
+            
+    def draw_results(self):
+        '''
+        Draw results data in different color
+        '''
+        colors=["blue","yellow","green","black","cyan","gray","pink"]
+        if self.k>len(colors):
+            print("Don't have that much colors to show the results!")
+            return
+        if not self.res_data:
+            print("No results to show!")
+            return
+        if len(self.res_data[0][0])!=2:
+            print("Only support Two-Dimension!")  
+            return
+        for cluster_index in range(len(self.res_data)):
+            x=[]
+            y=[]
+            for element in self.res_data[cluster_index]:
+                x.append(element[0])
+                y.append(element[1])
+            area = 20
+            plt.scatter(x, y, s=area, c=colors[cluster_index], alpha=0.5)
+        plt.show()       
+         
 file_name="data/clusters.txt"                
 gaussian_mixture_model=Gaussian_Mixture_Model()
-result=gaussian_mixture_model.run(3,file_name)
-for cluster in result:
-    print("cluster")
-    for node in cluster:
-        print(node)
-        
+gaussian_mixture_model.run(3,file_name)
+gaussian_mixture_model.draw_results()
