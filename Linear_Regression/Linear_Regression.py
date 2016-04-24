@@ -31,14 +31,9 @@ class Linear_Regression(object):
                     line=line.split(",")
                     line=list(map(float,line))
                     self.data_X.append(line[:2]) #ignore the 4th and 5th cols
-                    self.data_Y.append(line[2])
+                    self.data_Y.append([line[2]])
         except:
             print("Error reading data!") 
-        temp=[]
-        for item in self.data_X:
-            temp.append(" ".join(list(map(str,item))))
-        print(";".join(temp))
-        print(";".join(list(map(str,self.data_Y))))
         
 file_name="data/linear.txt"  
 linear_Regression=Linear_Regression()
