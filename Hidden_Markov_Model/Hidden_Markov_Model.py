@@ -69,18 +69,41 @@ class Hidden_Markov_Model():
             res[x][y]=0
         return res
     
+    def get_path(self,p):
+        res=[]
+        res.append(p[-1][0])
+        pre=p[-1][0]
+        p=list(reversed(p))
+        for item1 in p[1:]:
+            for item2 in item1:
+                if abs(pre[0]-item2[0]) +abs(pre[1]-item2[1])==1:
+                    res.append(item2)
+                    pre=item2
+                    break
+        return list(reversed(res))
+                
+        
     def viterbi(self):
         res=[]
-        x,y=self.get_emission_probability_init(self.observations[0])
-        res.append((x,y))
+        emission=self.get_emission_probability_init(self.observations[0])
+        res.append(emission)
         for step in range(1,11):
-            x,y=self.get_emission_probability(self.observations[step], (x,y))
-            res.append((x,y))
+            new_emission=[]
+            largest=0
+            for x,y in emission:
+                temp,value=self.get_emission_probability(self.observations[step], (x,y))
+                if abs(value-largest)<0.1:
+                    new_emission+=temp
+                elif value>largest:
+                    new_emission=temp
+                    largest=value
+            emission=new_emission
+            res.append(emission)
         return res
     
     def get_emission_probability_init(self,observation):
         largest=0
-        x,y=-1,-1
+        res=[]
         for i in range(len(self.grid)):
             for j in range(len(self.grid[i])):
                 if self.grid[i][j]=="1" and (i,j) in self.towers:
@@ -91,14 +114,16 @@ class Hidden_Markov_Model():
                         prob+=-log(1/(6*self.distances[i][j][k]))
                     else:
                         prob+=0
-                if prob>largest:
-                    x,y=i,j
+                if abs(prob-largest)<0.1:
+                    res.append((i,j))
+                elif prob>largest:
+                    res=[(i,j)]
                     largest=prob
-        return x,y
+        return res
     
     def get_emission_probability(self,observation,pre):
         largest=0
-        x,y=-1,-1
+        res=[]
         trans=[(1,0),(0,1),(-1,0),(0,-1)]
         for tran_index in range(len(trans)):
             i=pre[0]+trans[tran_index][0]
@@ -110,10 +135,12 @@ class Hidden_Markov_Model():
                         prob+=-log(1/(6*self.distances[i][j][k]))
                     else:
                         prob+=0
-            if prob>largest:
-                x,y=i,j
+            if abs(prob-largest)<0.1:
+                res.append((i,j))
+            elif prob>largest:
+                res=[(i,j)]
                 largest=prob
-        return x,y
+        return res,largest
     
     def get_distances(self):
         res=[[0]*len(self.grid[0]) for _ in range(len(self.grid))]
@@ -133,7 +160,10 @@ class Hidden_Markov_Model():
     def run(self):
         self.distances=self.get_distances()
         self.transform_probability=self.get_transform_probability()
-        print(self.viterbi())
+        p=self.viterbi()
+        for index,item in enumerate(p):
+            print(index+1,item)
+        print(self.get_path(p))
         
         
 hidden_Markov_Model=Hidden_Markov_Model()
