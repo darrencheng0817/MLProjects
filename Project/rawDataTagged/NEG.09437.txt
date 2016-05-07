@@ -1,0 +1,1 @@
+no/DT comment/NN -/. stupid/JJ movie,/NN acting/VB average/NN or/CC worse.../NN screenplay/NN -/. no/DT sense/NN at/RP all.../RP SKIP/NN IT!/NN 

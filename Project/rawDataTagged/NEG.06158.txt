@@ -1,0 +1,1 @@
+The/DT movie/NN was/VB disappointing./IN The/DT book/NN was/VB powerful./IN The/DT views/NN and/CC the/DT learning/NN of/IN Little/RB Tree/NN were/VB powerfully/TO portrayed/VB in/IN the/DT book./NN The/DT movie/NN just/RB coasted/VB along/RP and/CC finally/RB dribbled/VB away./VB Still/RB a/DT nice/JJ tale/NN for/IN kids./DT 

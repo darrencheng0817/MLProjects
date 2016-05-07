@@ -1,0 +1,1 @@
+nullin/IN a/DT horror/NN movie.../NN thats/NN like/IN trying/VB to/TO scare/VB a/DT kid/NN with/IN a/DT care/NN bear/VB who/WH has/VB "hug/IN me/PRP and/CC i/FW will/MD love/VB you/PRP forever"/MD written/VB on/IN the/DT stomach/NN of/IN it../DT 

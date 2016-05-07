@@ -1,0 +1,1 @@
+The/DT movie/NN was/VB a/DT big/JJ Car/NN Commercial./NN :-)<br/NN /><br/NN />But/. who/WH cares?/VB I/PRP went/VB to/TO the/DT theater/NN to/TO view/VB the/DT Shelby/NN Cobra,/NN Angelina/NN &/CC Cage.<br/NN /><br/NN />So/. I/PRP guess/VB it/PRP was/VB a/DT good/JJ movie./NN *bg*<br/IN /><br/DT />/NN 

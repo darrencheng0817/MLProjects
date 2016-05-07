@@ -1,0 +1,1 @@
+very/RB badly/RB made/VB film,/IN the/DT action/violence/NN scenes/NN are/VB ridiculous.<br/IN /><br/DT />1/NN point/NN for/IN the/DT presence/NN of/IN Burton/NN and/CC Mastroianni/NN +/IN 1/CD point/NN for/IN the/DT real/JJ tragic/NN event/NN of/IN the/DT massacre/NN of/IN the/DT innocent/JJ italians:/NN 2/10./NN 

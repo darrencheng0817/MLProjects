@@ -1,0 +1,1 @@
+This/DT movie/NN features/NN Charlie/NN Spradling/NN dancing/NN in/IN a/DT strip/NN club./NN Beyond/NN that,/. it/PRP features/VB a/DT truly/RB bad/JJ script/NN with/IN dull,/DT unrealistic/JJ dialogue./NN That/IN it/PRP got/VB as/IN many/JJ positive/JJ votes/NN suggests/VB some/DT people/NN may/MD be/VB joking./DT 

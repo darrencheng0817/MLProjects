@@ -1,0 +1,1 @@
+This/DT movie/NN is/VB one/CD of/IN the/DT masterpieces/NN from/IN Mr./NN Antonioni./NN It/PRP is/VB about/IN youth,/DT distraction,/NN happiness,/IN alienation,/DT materialism,/NN honor,/NN corruption./. And/CC it/PRP is/VB like/IN everything/NN else/RB from/IN great/JJ Italian/JJ director/NN -true/IN art.<br/DT /><br/NN />/NN 

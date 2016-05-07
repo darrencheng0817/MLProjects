@@ -1,0 +1,1 @@
+nullit's/IN his/PRP$ first/JJ film,/NN low/JJ budget/NN etc./NN -/. I/PRP get/VB it,/NN but/CC it's/VB also/RB out/RB there/RB for/IN members/NN of/IN the/DT public/JJ to/TO purchase/NN and/CC it's/VB just/RB not/RB up/RB to/TO scratch./VB 

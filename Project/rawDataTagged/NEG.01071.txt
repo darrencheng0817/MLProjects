@@ -1,0 +1,1 @@
+This/DT movie/NN is/VB terrible/JJ but/CC it/PRP has/VB some/DT good/JJ effects./NN 

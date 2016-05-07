@@ -1,0 +1,1 @@
+The/DT movie/NN is/VB great/JJ and/CC I/PRP like/VB the/DT story./NN I/PRP prefer/VB this/DT movie/NN than/IN other/JJ movie/NN such/PDT The/DT cell/NN (/. sick/JJ movie/NN )/. and/CC Highlander/NN (/. silly/JJ movie/NN )./. I/PRP just/RB tell/VB the/DT truth,/NN I/PRP like/VB a/DT reality/NN hehe/. and/CC also/RB a/DT true/JJ story/NN :)<br/IN /><br/DT />/NN 

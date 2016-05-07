@@ -1,0 +1,1 @@
+Movie/NN didn't/NN have/VB much/JJ plot/NN and/CC was/VB uninteresting./RP Basically/NN you/PRP spend/VB a/DT lot/NN of/IN time/NN watching/VB people/NN paint./VB Also/RB it's/VB very/RB difficult/JJ to/TO hear/VB or/CC understand/VB the/DT dialogue/NN --/. partially/RB because/IN of/IN the/DT accents,/NN but/CC also/RB because/IN words/NN are/VB mumbled./DT 

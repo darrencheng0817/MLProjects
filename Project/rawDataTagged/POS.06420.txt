@@ -1,0 +1,1 @@
+This/DT movie/NN is/VB really/RB funny!!/VB The/DT General/NN is/VB Keaton's/NN finest/JJ work/NN but/CC there/EX are/VB many/JJ of/IN his/PRP$ works/NN that/WH are/VB more/JJ hilarious/NN -/. in/IN this/DT one/NN are/VB multiple/JJ sight/NN gags/. and/CC creative/JJ humor./. We/PRP watch/VB it/PRP over/RP and/CC over/RB and/CC it/PRP only/RB seems/VB to/TO get/VB funnier!/DT 

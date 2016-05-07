@@ -1,0 +1,1 @@
+nullIn/IN Space,/NN came/VB the/DT two/CD killer/NN blows/NN -/. plot/NN and/CC sentiment./NN Who/WH really/RB cared/VB what/WH happened/VB to/TO the/DT tiger/NN or/CC whether/IN Eddie/NN Murphy/NN made/VB up/RP with/IN his/PRP$ daughter?/NN Not/RB me,/JJ that's/NN for/IN sure./DT 

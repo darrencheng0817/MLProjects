@@ -1,0 +1,1 @@
+This/DT movie/NN will/MD always/RB be/VB a/DT Broadway/NN and/CC Movie/NN classic,/NN as/IN long/JJ as/IN there/EX are/VB still/RB people/NN who/WH sing,/VB dance,/NN and/CC act./NN 

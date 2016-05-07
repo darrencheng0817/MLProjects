@@ -1,0 +1,1 @@
+This/DT movie/NN is/VB very/RB good./VB The/DT screenplay/NN is/VB enchanting./NN But/CC Meryl/NN Streep/NN is/VB most/RB impressive./VB Her/PRP$ performance/NN is/VB excellent./IN She/PRP brings/VB me/PRP to/TO go/VB into/IN the/DT heart/NN of/IN her/PRP$ role./NN 
